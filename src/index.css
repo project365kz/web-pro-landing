@@ -1,0 +1,246 @@
+@import "tailwindcss";
+
+/* Подключаем Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+/* Кастомные CSS-переменные */
+:root {
+  --color-primary: #7C3AED;
+  --color-primary-light: #A78BFA;
+  --color-primary-dark: #5B21B6;
+  --color-accent: #F59E0B;
+  --color-accent-light: #FBBF24;
+  --color-dark: #09090F;
+  --color-dark-light: #111122;
+  --color-dark-card: #13132B;
+  --color-surface: #1A1A35;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: var(--color-dark);
+  color: #CBD5E1;
+  overflow-x: hidden;
+}
+
+/* Кастомный скроллбар */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-dark); }
+::-webkit-scrollbar-thumb { background: var(--color-primary); border-radius: 3px; }
+
+/* =========== АНИМАЦИИ =========== */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(124, 58, 237, 0.4), 0 0 60px rgba(124, 58, 237, 0.1); }
+  50% { box-shadow: 0 0 30px rgba(124, 58, 237, 0.6), 0 0 80px rgba(124, 58, 237, 0.2); }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes shimmer {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+@keyframes border-rotate {
+  0% { --angle: 0deg; }
+  100% { --angle: 360deg; }
+}
+
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+.animate-fade-in-up { animation: fade-in-up 0.7s ease-out both; }
+.animate-scale-in { animation: scale-in 0.5s ease-out both; }
+
+/* =========== СТЕКЛОМОРФИЗМ (улучшенный) =========== */
+.glass {
+  background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.glass-strong {
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.04) 100%);
+  backdrop-filter: blur(30px);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+/* =========== КАРТОЧКИ С ГРАДИЕНТНОЙ РАМКОЙ =========== */
+.card-glow {
+  position: relative;
+  background: linear-gradient(160deg, rgba(30,30,60,0.9) 0%, rgba(15,15,35,0.95) 100%);
+  border: 1px solid rgba(124,58,237,0.15);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card-glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(124,58,237,0.3), transparent 50%, rgba(245,158,11,0.2));
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.card-glow:hover {
+  transform: translateY(-6px);
+  border-color: rgba(124,58,237,0.3);
+  box-shadow: 0 20px 60px rgba(124,58,237,0.12), 0 0 30px rgba(124,58,237,0.08);
+}
+
+.card-glow:hover::before {
+  opacity: 1;
+}
+
+/* =========== ГРАДИЕНТНЫЙ ТЕКСТ =========== */
+.text-gradient {
+  background: linear-gradient(135deg, #A78BFA 0%, #F59E0B 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-purple {
+  background: linear-gradient(135deg, #C4B5FD, #7C3AED);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* =========== КНОПКИ =========== */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 36px;
+  background: linear-gradient(135deg, #7C3AED 0%, #A855F7 100%);
+  color: white;
+  font-weight: 600;
+  font-size: 15px;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(124,58,237,0.3);
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: none;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(124,58,237,0.5);
+}
+
+.btn-primary:hover::before {
+  animation: shimmer 0.6s ease-out;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 36px;
+  background: rgba(124,58,237,0.1);
+  color: #C4B5FD;
+  font-weight: 600;
+  font-size: 15px;
+  border: 1.5px solid rgba(124,58,237,0.3);
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.btn-secondary:hover {
+  background: rgba(124,58,237,0.2);
+  border-color: rgba(124,58,237,0.5);
+  color: white;
+  transform: translateY(-3px);
+}
+
+/* =========== СЕКЦИИ =========== */
+.section-badge {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #A78BFA;
+  margin-bottom: 16px;
+  padding: 6px 16px;
+  background: rgba(124,58,237,0.1);
+  border: 1px solid rgba(124,58,237,0.2);
+  border-radius: 9999px;
+}
+
+/* =========== REVEAL =========== */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========== ШРИФТ ЗАГОЛОВКОВ =========== */
+.heading-font {
+  font-family: 'Space Grotesk', 'Inter', sans-serif;
+}
+
+/* =========== ДЕКОРАТИВНЫЕ ЭЛЕМЕНТЫ =========== */
+.decoration-line {
+  width: 60px;
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #7C3AED, #F59E0B);
+  margin: 0 auto 20px;
+}
+
+/* Точечная сетка для фона */
+.dot-pattern {
+  background-image: radial-gradient(rgba(124,58,237,0.15) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
