@@ -49,7 +49,7 @@ export default function Header() {
         <Logo size={36} />
 
         {/* Desktop навигация */}
-        <nav className="hidden md:flex" style={{ alignItems: 'center', gap: 32 }}>
+        <nav className="hidden md:flex" style={{ alignItems: 'center', gap: 28 }}>
           {NAV.map((item) => (
             <a
               key={item.href}

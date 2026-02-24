@@ -80,7 +80,7 @@ export default function Contact() {
           subtitle="Расскажите о вашем проекте — мы свяжемся в течение часа"
         />
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 28 }} className="lg:!grid-cols-[3fr_2fr]">
+        <div className="grid grid-cols-1 lg:grid-cols-[3fr_2fr]" style={{ gap: 28 }}>
           {/* Форма */}
           <form
             onSubmit={handleSubmit}

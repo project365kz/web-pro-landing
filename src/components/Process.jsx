@@ -61,11 +61,8 @@ export default function Process() {
         />
 
         <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-            gap: '24px',
-          }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
+          style={{ gap: 24 }}
         >
           {STEPS.map((s, i) => (
             <div

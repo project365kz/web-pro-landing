@@ -74,12 +74,8 @@ export default function Pricing() {
         />
 
         <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: '28px',
-            alignItems: 'start',
-          }}
+          className="grid grid-cols-1 lg:grid-cols-3 items-start"
+          style={{ gap: 28 }}
         >
           {PLANS.map((plan) => (
             <div

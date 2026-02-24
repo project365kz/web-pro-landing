@@ -52,11 +52,8 @@ export default function Testimonials() {
         />
 
         <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-            gap: '24px',
-          }}
+          className="grid grid-cols-1 lg:grid-cols-3"
+          style={{ gap: 24 }}
         >
           {REVIEWS.map((r) => (
             <div
