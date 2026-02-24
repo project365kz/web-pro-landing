@@ -33,12 +33,16 @@ const SERVICES = [
     title: '2D Игры',
     desc: 'Создадим уникальную 2D-игру на день рождения или корпоратив. Незабываемый подарок!',
     color: '#FBBF24',
+    featured: true,
+    badge: 'Хит',
   },
   {
     icon: Bot,
     title: 'Автоматизация',
     desc: 'Автоматизируем рутину: чат-боты, рассылки, CRM-интеграции, парсинг данных.',
     color: '#34D399',
+    featured: true,
+    badge: 'Новинка',
   },
   {
     icon: Rocket,
@@ -101,18 +105,52 @@ export default function Services() {
             <div
               key={s.title}
               className="card-glow group"
-              style={cardStyle}
+              style={{
+                ...cardStyle,
+                ...(s.featured
+                  ? {
+                      border: `1.5px solid ${s.color}45`,
+                      boxShadow: `0 0 30px ${s.color}12, 0 10px 40px ${s.color}08`,
+                      background: `linear-gradient(160deg, ${s.color}10 0%, rgba(15,15,35,0.95) 40%)`,
+                    }
+                  : {}),
+              }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-6px)'
-                e.currentTarget.style.borderColor = 'rgba(124,58,237,0.35)'
-                e.currentTarget.style.boxShadow = '0 20px 60px rgba(124,58,237,0.12)'
+                e.currentTarget.style.borderColor = s.featured ? `${s.color}60` : 'rgba(124,58,237,0.35)'
+                e.currentTarget.style.boxShadow = s.featured
+                  ? `0 20px 60px ${s.color}20, 0 0 40px ${s.color}10`
+                  : '0 20px 60px rgba(124,58,237,0.12)'
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)'
-                e.currentTarget.style.borderColor = 'rgba(124,58,237,0.18)'
-                e.currentTarget.style.boxShadow = 'none'
+                e.currentTarget.style.borderColor = s.featured ? `${s.color}45` : 'rgba(124,58,237,0.18)'
+                e.currentTarget.style.boxShadow = s.featured
+                  ? `0 0 30px ${s.color}12, 0 10px 40px ${s.color}08`
+                  : 'none'
               }}
             >
+              {/* Бейдж для featured */}
+              {s.badge && (
+                <div
+                  style={{
+                    position: 'absolute',
+                    top: 16,
+                    right: 16,
+                    background: `linear-gradient(135deg, ${s.color}, ${s.color}CC)`,
+                    color: s.color === '#FBBF24' ? '#1a1a2e' : 'white',
+                    fontSize: 11,
+                    fontWeight: 700,
+                    padding: '4px 12px',
+                    borderRadius: 99,
+                    letterSpacing: 0.5,
+                    boxShadow: `0 2px 10px ${s.color}40`,
+                  }}
+                >
+                  {s.badge}
+                </div>
+              )}
+
               {/* Иконка */}
               <div
                 style={{
@@ -123,8 +161,8 @@ export default function Services() {
                   alignItems: 'center',
                   justifyContent: 'center',
                   marginBottom: 20,
-                  background: `${s.color}12`,
-                  border: `1px solid ${s.color}30`,
+                  background: s.featured ? `${s.color}18` : `${s.color}12`,
+                  border: `1px solid ${s.featured ? `${s.color}40` : `${s.color}30`}`,
                   transition: 'transform 0.3s ease',
                 }}
               >
@@ -141,15 +179,15 @@ export default function Services() {
                 {s.desc}
               </p>
 
-              {/* Нижняя линия при ховере */}
+              {/* Нижняя линия */}
               <div
                 style={{
                   position: 'absolute',
                   bottom: 0,
                   left: 28,
                   right: 28,
-                  height: 1,
-                  background: `linear-gradient(90deg, transparent, ${s.color}30, transparent)`,
+                  height: s.featured ? 2 : 1,
+                  background: `linear-gradient(90deg, transparent, ${s.color}${s.featured ? '50' : '30'}, transparent)`,
                 }}
               />
             </div>
